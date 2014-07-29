@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebServiceModelStoreContainer" CdmEntityContainer="WebServiceEntities">
+    <EntitySetMapping Name="Posts">
+      <EntityTypeMapping TypeName="WebServiceModel.Post">
+        <MappingFragment StoreEntitySet="Posts">
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="PostDescription" ColumnName="Post" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
