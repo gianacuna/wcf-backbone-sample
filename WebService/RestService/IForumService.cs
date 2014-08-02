@@ -15,33 +15,24 @@ namespace RestService
     {
         [OperationContract]
         [WebGet(
+            RequestFormat=WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Wrapped,
             UriTemplate = "ForumPosts/{id}")]
-        Stream GetPosts(string id);
+        List<Post> GetPosts(string id);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "ForumPost")]
-        Stream AddPost(Post post);
+        Post AddPost(Post post);
 
         [OperationContract]
         [WebInvoke(Method = "DELETE",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "ForumPost/{id}")]
-        Stream DeletePost(string id);
-
-        [OperationContract]
-        [WebInvoke(Method = "PUT",
-            RequestFormat = WebMessageFormat.Json,
-            ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "ForumPost/{id}")]
-        Stream EditPost(Post post, string id);
+        Post DeletePost(string id);
 
     }
 }

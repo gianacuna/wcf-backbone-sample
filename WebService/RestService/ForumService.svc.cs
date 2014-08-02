@@ -13,21 +13,15 @@ namespace RestService
 {
     public class ForumService : IForumService
     {
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "ForumPosts/{id}")]
-        public Stream GetPosts(string id)
+        public List<Post> GetPosts(string id)
         {
             WebServiceEntities dbContext = new WebServiceEntities();
             List<Post> posts = dbContext.Posts.Select(p => p).ToList();
 
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            string jsonval = js.Serialize(posts);
-            WebOperationContext.Current.OutgoingResponse.ContentType = "application/json; charset=utf-8";
-
-            return new MemoryStream(Encoding.UTF8.GetBytes(jsonval));
+            return posts;
         }
 
-        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, UriTemplate = "ForumPost")]
-        public Stream AddPost(Post post)
+        public Post AddPost(Post post)
         {
             if (post == null)
             {
@@ -41,36 +35,20 @@ namespace RestService
             dbContext.Posts.Add(post);
             dbContext.SaveChanges();
 
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            string jsonval = js.Serialize(post);
-            WebOperationContext.Current.OutgoingResponse.ContentType = "application/json; charset=utf-8";
-
-            return new MemoryStream(Encoding.UTF8.GetBytes(jsonval));
+            return post;
         }
 
-        [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Json, UriTemplate = "ForumPost/{id}")]
-        public Stream EditPost(Post post, string id)
-        {
-            return new MemoryStream(Encoding.UTF8.GetBytes(""));
-        }
-
-        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, UriTemplate = "ForumPost/{id}")]
-        public Stream DeletePost(string id)
+        public Post DeletePost(string id)
         {
             int ID = Convert.ToInt32(id);
 
             WebServiceEntities dbContext = new WebServiceEntities();
 
-            Post post = dbContext.Posts.SingleOrDefault(p => p.PostId == ID);
+            Post post = dbContext.Posts.Find(ID);
             dbContext.Posts.Remove(post);
             dbContext.SaveChanges();
 
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            string jsonval = js.Serialize(post);
-
-            WebOperationContext.Current.OutgoingResponse.ContentType = "application/json; charset=utf-8";
-
-            return new MemoryStream(Encoding.UTF8.GetBytes(jsonval));
+            return post;
         }
 
     }
