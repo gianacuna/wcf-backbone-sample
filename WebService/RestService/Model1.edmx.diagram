@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="589f4fa245a7497d84461eea41921406" Name="Diagram1">
-        <EntityTypeShape EntityType="WebServiceModel.Post" Width="1.5" PointX="2.625" PointY="0.75" />
+        <EntityTypeShape EntityType="WebServiceModel.Post" Width="1.5" PointX="0.625" PointY="0.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

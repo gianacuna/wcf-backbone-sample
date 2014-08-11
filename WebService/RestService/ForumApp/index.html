@@ -20,7 +20,8 @@
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
-
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/backbone.stickit/0.8.0/backbone.stickit.min.js"></script>
+            
         <script>
 
             var App = App || {};
@@ -104,9 +105,10 @@
 
         <script type="text/template" id="item-template">
             <tr>
-                <td><span><%= PostDescription %></span></td>
+                <td><span id="description" contenteditable="true"><%= PostDescription %></span></td>
                 <td>
                     <div class="pull-right">
+                        <a href="#" id="btnOk"><span class="glyphicon glyphicon-ok"></span></a>
                         <a href="#" id="btnDelete"><span class="glyphicon glyphicon-remove"></span></a>
                     </div>
                 </td>

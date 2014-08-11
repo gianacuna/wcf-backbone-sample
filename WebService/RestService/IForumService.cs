@@ -9,7 +9,6 @@ using System.Text;
 
 namespace RestService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IForumService" in both code and config file together.
     [ServiceContract]
     public interface IForumService
     {
@@ -34,5 +33,11 @@ namespace RestService
             UriTemplate = "ForumPost/{id}")]
         Post DeletePost(string id);
 
+        [OperationContract]
+        [WebInvoke(Method = "PUT",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "ForumPost/{id}")]
+        Post UpdatePost(string id, Post post);
     }
 }

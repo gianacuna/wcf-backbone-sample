@@ -1,6 +1,7 @@
 ﻿
 var ForumPost = Backbone.Model.extend({
     urlRoot: '/ForumPost',
+    idAttribute: 'PostId',
     initialize: function () {
 
     }

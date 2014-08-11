@@ -12,16 +12,28 @@ var ItemView = Backbone.View.extend({
         
         var html = this.template(this.model.toJSON());
         this.setElement($(html));
+        this.stickit();
         return this;
     },
+    bindings: {
+        '#description': 'PostDescription'
+    },
     events: {
-        "click #btnDelete": "deleteRow"
+        "click #btnDelete": "deleteRow",
+        "click #btnOk": "updateRow"
     },
     deleteRow: function () {
+        
         var ID = this.model.get("PostId");
-
-        var item = new ForumPost({id: ID});
-        item.destroy({
+        
+        this.model.destroy({
+            success: function () {
+                App.PostList.render();
+            }
+        });
+    },
+    updateRow: function () {
+        this.model.save({}, {
             success: function () {
                 App.PostList.render();
             }
